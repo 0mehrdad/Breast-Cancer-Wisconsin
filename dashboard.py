@@ -94,15 +94,16 @@ elif page == "Model Evaluation":
     st.subheader("Classification Report")
     report = classification_report(y_test, preds, output_dict=True)
     st.dataframe(pd.DataFrame(report).transpose())
-
-    st.subheader("Predict New Data")
-    st.write("Enter the features of the new data point:")
-    new_data = {}
-    for feature in df.columns[1:11]:
-        new_data[feature] = st.number_input(feature, value=0.0, step=0.1)
-    x_new = np.array(list(new_data.values())).reshape(1, -1)
-    if st.button("Predict"):
-        prediction = model.predict(x_new)
-        st.write(f"Prediction: {'Malignant' if prediction[0] == 1 else 'Benign'}")
-        proba = model.predict_proba(x_new)
-        st.write(f"Probability: {proba[0][1]:.2f} Malignant, {proba[0][0]:.2f} Benign")
+    
+    if use_balanced == 'Use balanced dataset':
+        st.subheader("Predict New Data")
+        st.write("Enter the features of the new data point:")
+        new_data = {}
+        for feature in df.columns[1:11]:
+            new_data[feature] = st.number_input(feature, value=0.0, step=0.1)
+        x_new = np.array(list(new_data.values())).reshape(1, -1)
+        if st.button("Predict"):
+            prediction = model.predict(x_new)
+            st.write(f"Prediction: {'Malignant' if prediction[0] == 1 else 'Benign'}")
+            proba = model.predict_proba(x_new)
+            st.write(f"Probability: {proba[0][1]:.2f} Malignant, {proba[0][0]:.2f} Benign")
