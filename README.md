@@ -7,46 +7,50 @@ This project explores the **Breast Cancer Wisconsin (Diagnostic)** dataset using
 ## 🚀 Project Features
 
 ### 🔎 Exploratory Data Analysis
-- Check class imbalance  
-- Histograms, KDE plots, boxplots  
+- Class imbalance inspection  
+- Histograms, KDE plots, and boxplots  
 - Correlation heatmaps  
-- Scatter-plot matrix (pair plots)
+- Scatter-plot matrices
 
 ### 🧭 Dimensionality Reduction
-- PCA using 10 features (mean values)  
-- PCA using all 30 features  
+- PCA with the first 10 features  
+- PCA with all 30 features  
 
 ### 🤖 Machine Learning (XGBoost)
-- Baseline models with:
+- Baseline models:
   - First 10 features (mean)
   - All 30 features
   - PCA components
-- Class imbalance handling:
+- Handling imbalance:
   - scale_pos_weight
-  - Oversampling (resampling the minority class)
+  - Oversampling (resampling)
 - Feature selection using XGBoost feature importance
 
 ### 🧪 Model Evaluation
 - Confusion matrices  
 - Classification reports  
 - 10-fold cross-validation  
-- Comparison of original vs balanced data  
+- Comparison of imbalanced vs balanced results  
 
 ### 📊 Streamlit Dashboard
-- Explore feature distributions  
-- Train and evaluate models with different settings  
+- Feature exploration  
+- XGBoost model training & evaluation  
 - Optional prediction for new patient data  
 
 ---
 
 ## 📁 Repository Structure
 
-- `WDBC.csv` – Cleaned dataset used in the dashboard  
-- `wdbc.data` / `wdbc.names` – Original UCI dataset files  
-- `dashboard.py` – Streamlit app (EDA + model evaluation + prediction)  
-- `data visualisation.ipynb` – Notebook with analysis and modelling  
-- `AE2 Mehrdad-Madadi.pdf` – Full project report  
-- `LICENSE` – GPL-3.0 license  
+Project directory layout:
+
+    ├── WDBC.csv                  # Cleaned dataset used in the dashboard
+    ├── wdbc.data                 # Original UCI data file
+    ├── wdbc.names                # Original UCI metadata/description
+    ├── dashboard.py              # Streamlit dashboard (EDA + modelling + prediction)
+    ├── data visualisation.ipynb # Jupyter notebook with full analysis
+    ├── AE2 Mehrdad-Madadi.pdf   # Academic report with full methodology
+    ├── LICENSE                   # GPL-3.0 license
+    └── README.md                 # (This file)
 
 ---
 
@@ -54,37 +58,29 @@ This project explores the **Breast Cancer Wisconsin (Diagnostic)** dataset using
 
 The project uses the **Breast Cancer Wisconsin (Diagnostic)** dataset (569 samples, 30 numerical features).
 
-Target classes:
-- **M** – Malignant  
-- **B** – Benign  
+Target labels:
+- M — Malignant  
+- B — Benign  
 
-Features describe properties of cell nuclei (radius, texture, area, smoothness, concavity, etc.).
+All features represent cell-nucleus characteristics extracted from digitized microscopic images.
 
 ---
 
-## ▶️ How to Run the Dashboard
+## ▶️ Running the Dashboard
 
-Install dependencies (example):
+Install dependencies:
 
     pip install -r requirements.txt
 
-Run the Streamlit app:
+Launch the Streamlit app:
 
     streamlit run dashboard.py
 
-Then open the local URL shown in the terminal.
-
 ---
 
-## 🧠 Summary of Results
+## 🧠 Key Findings
 
-- Oversampling significantly reduces **false negatives**, which is critical for cancer detection.  
-- XGBoost achieves around **98% accuracy** with very high recall for malignant cases.  
-- PCA is useful for visualisation but slightly weaker for final performance.  
-- A compact model using a subset of important “_worst” features still performs strongly.
-
----
-
-## 📌 License
-
-This project is released under the **GPL-3.0** license.
+- Oversampling reduces **false negatives**, which is critical in medical classification.  
+- XGBoost reaches about **98% accuracy** with very high recall for malignant cases.  
+- PCA is helpful for visualisation but slightly reduces performance.  
+- A compact model using only important “_worst” features still performs well.
